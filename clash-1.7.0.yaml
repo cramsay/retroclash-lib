@@ -1,0 +1,7 @@
+name: clash-1.7.0
+resolver: lts-19.25
+
+packages:
+  - clash-prelude-1.7.0
+  - clash-lib-1.7.0
+  - clash-ghc-1.7.0

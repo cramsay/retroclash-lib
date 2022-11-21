@@ -1,10 +1,7 @@
 {-# LANGUAGE ScopedTypeVariables, ApplicativeDo, Rank2Types #-}
 {-# LANGUAGE TupleSections #-}
 module RetroClash.Utils
-    ( withResetEnableGen
-    , withEnableGen
-
-    , withStart
+    ( withStart
 
     , Polarity(..), Active, active, IsActive(..)
     , toActiveDyn
@@ -78,18 +75,6 @@ import Data.Maybe (fromMaybe)
 import Control.Monad.State
 import qualified Data.Foldable as F
 import Data.Monoid
-
-withResetEnableGen
-    :: (KnownDomain dom)
-    => (HiddenClockResetEnable dom => r)
-    -> Clock dom -> r
-withResetEnableGen board clk = withClockResetEnable clk resetGen enableGen board
-
-withEnableGen
-    :: (KnownDomain dom)
-    => (HiddenClockResetEnable dom => r)
-    -> Clock dom -> Reset dom -> r
-withEnableGen board clk rst = withClockResetEnable clk rst enableGen board
 
 oneHot :: forall n. (KnownNat n) => Index n -> Vec n Bool
 oneHot = reverse . bitCoerce . bit @(Unsigned n) . fromIntegral
